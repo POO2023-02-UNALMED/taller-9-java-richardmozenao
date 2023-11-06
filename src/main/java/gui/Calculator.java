@@ -1,5 +1,7 @@
 package gui;
 
+import javax.script.ScriptEngineManager;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -11,12 +13,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 
 public class Calculator extends VBox implements EventHandler<ActionEvent>{
 	
 	String number1 = "";
 	String number2 = "";
 	String operator;
+	double resultado;
 	Text displayText;
 	
 	public Calculator(){
@@ -127,11 +133,30 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 		
 		Button b = (Button) event.getSource();
 		String value = b.getText();
-		
-		//***
-		//***
-		//***
-		
+
+		if(value == "C"){
+			this.displayText.setText("");
+		} else if(value == "+"|value == "-"|value == "*"|value == "/"){
+				number1 = this.displayText.getText();
+				operator = value;
+				this.displayText.setText("");
+		} else if(value == "="){
+			number2 = this.displayText.getText();
+			System.out.println(Double.parseDouble(number1)-Double.parseDouble(number2));
+			if(operator == "*"){
+				resultado = Double.parseDouble(number1) * Double.parseDouble(number2);
+			}else if(operator == "-"){
+				resultado = Double.parseDouble(number1) - Double.parseDouble(number2);
+			}else if(operator == "+"){
+				resultado = Double.parseDouble(number1) + Double.parseDouble(number2);
+			}else if(operator == "/"){
+				resultado = Double.parseDouble(number1)/Double.parseDouble(number2);
+			}
+			this.displayText.setText(String.valueOf(resultado));
+			
+		} else{
+			this.displayText.setText(this.displayText.getText()+value);
+		}
 	}
 	
 
