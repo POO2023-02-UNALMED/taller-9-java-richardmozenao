@@ -142,7 +142,6 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 				this.displayText.setText("");
 		} else if(value == "="){
 			number2 = this.displayText.getText();
-			System.out.println(Double.parseDouble(number1)-Double.parseDouble(number2));
 			if(operator == "*"){
 				resultado = Double.parseDouble(number1) * Double.parseDouble(number2);
 			}else if(operator == "-"){
